@@ -80,7 +80,7 @@ with st.form(key="subject_form"):
     subjects_input = st.text_input("Enter subjects (comma separated)", "")
     submit_button = st.form_submit_button(label="Get Recommendations")
 
-# Rekebisha safu za mada kuwa herufi ndogo
+# Convert subject columns to lowercase
 df['subjects'] = df['subjects'].apply(lambda x: [subject.lower() for subject in x])
 subject_matrix = mlb.fit_transform(df['subjects'])
 subject_columns = [subject.lower() for subject in mlb.classes_]
@@ -89,25 +89,25 @@ subject_columns = [subject.lower() for subject in mlb.classes_]
 subject_df = pd.DataFrame(subject_matrix, columns=subject_columns)
 df = pd.concat([df, subject_df], axis=1)
 
-# Rekebisha kazi ya kuangalia usahihi wa mada
+# Function to validate entered subjects
 def validate_subjects(input_subjects):
     """Check if all entered subjects are valid."""
     valid_subjects = set(subject_columns)
     return all(subject.lower() in valid_subjects for subject in input_subjects)
 
 if submit_button and subjects_input:
-    # Weka herufi ndogo kwenye maingizo ya mtumiaji
+    # Convert user inputs to lowercase
     student_subjects = [subject.strip().lower() for subject in subjects_input.split(",")]
 
-    # Hakikisha angalau mada mbili zimeingizwa
+    # Ensure at least two subjects are entered
     if len(student_subjects) < 2:
         st.error("Please enter at least 2 subjects.")
     else:
-        # Angalia usahihi wa mada zilizoingizwa
+        # Check if the entered subjects are valid
         if not validate_subjects(student_subjects):
             st.error("Some entered subjects are not recognized. Please check your inputs.")
         else:
-            # Andaa data ya pembejeo kwa ajili ya utabiri
+            # Prepare input data for prediction
             input_data = [1 if subject in student_subjects else 0 for subject in subject_columns]
             proba = model.predict_proba([input_data])[0]
             programs_with_proba = sorted(zip(model.classes_, proba), key=lambda x: x[1], reverse=True)
