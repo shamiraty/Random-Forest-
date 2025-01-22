@@ -79,8 +79,8 @@ if submit_button and subjects_input:
     student_subjects = list(set(student_subjects))  # Remove duplicates
 
     # Ensure that the user enters at least 2 subjects
-    if len(student_subjects) < 2:
-        st.error("Please enter at least 2 subjects.")
+    if len(student_subjects) < 3:
+        st.error("Please enter at least 3 subjects, separated by commas")
     else:
         # Validate that all input subjects are valid fuzzy matches
         if not is_valid_subjects(student_subjects):
