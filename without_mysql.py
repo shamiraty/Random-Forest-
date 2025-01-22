@@ -6,8 +6,8 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 # Dataset definition
 data = [
-    {"program": "Business Administration", "subjects": ["History", "Geography", "Maths", "Civics", "Bookkeeping", "Commerce", "Economics", "Management", "Leadership"]},
-    {"program": "Information Technology", "subjects": ["Maths", "Physics", "Biology", "Electronics", "Geography", "Programming", "Web Development", "Networking"]},
+    {"program": "Business Administration", "subjects": ["History", "Geography", "Maths", "Civics", "Bookkeeping", "Commerce", "Economics", "Management", "history","english","Leadership"]},
+    {"program": "Information Technology", "subjects": ["Maths", "Physics", "Biology", "Electronics", "Geography", "Programming", "Web Development", "Networking","mathematics"]},
     {"program": "Medicine", "subjects": ["Biology", "Chemistry", "Physics", "Maths", "General Studies", "Anatomy", "Physiology", "Biostatistics", "Pharmacology"]},
     {"program": "Engineering", "subjects": ["Maths", "Physics", "Chemistry", "Technical Drawing", "Electronics", "Mechanics", "Material Science", "Design"]},
     {"program": "Law", "subjects": ["History", "Civics", "English Literature", "General Studies", "Geography", "Constitutional Law", "Criminal Law", "Ethics"]},
