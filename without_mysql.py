@@ -6,8 +6,8 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 # Dataset definition
 data = [
-    {"program": "Business Administration", "subjects": ["History", "Geography", "Maths", "Civics", "Bookkeeping", "Commerce", "Economics", "Management", "history","english","Leadership"]},
-    {"program": "Information Technology", "subjects": ["Maths", "Physics", "Biology", "Electronics", "Geography", "Programming", "Web Development", "Networking","mathematics"]},
+    {"program": "Business Administration", "subjects": ["History", "Geography", "Maths", "Civics", "Bookkeeping", "Commerce", "Economics", "Management", "Leadership"]},
+    {"program": "Information Technology", "subjects": ["Maths", "Physics", "Biology", "Electronics", "Geography", "Programming", "Web Development", "Networking"]},
     {"program": "Medicine", "subjects": ["Biology", "Chemistry", "Physics", "Maths", "General Studies", "Anatomy", "Physiology", "Biostatistics", "Pharmacology"]},
     {"program": "Engineering", "subjects": ["Maths", "Physics", "Chemistry", "Technical Drawing", "Electronics", "Mechanics", "Material Science", "Design"]},
     {"program": "Law", "subjects": ["History", "Civics", "English Literature", "General Studies", "Geography", "Constitutional Law", "Criminal Law", "Ethics"]},
@@ -80,27 +80,38 @@ with st.form(key="subject_form"):
     subjects_input = st.text_input("Enter subjects (comma separated)", "")
     submit_button = st.form_submit_button(label="Get Recommendations")
 
+# Rekebisha safu za mada kuwa herufi ndogo
+df['subjects'] = df['subjects'].apply(lambda x: [subject.lower() for subject in x])
+subject_matrix = mlb.fit_transform(df['subjects'])
+subject_columns = [subject.lower() for subject in mlb.classes_]
+
+# Update the subject DataFrame
+subject_df = pd.DataFrame(subject_matrix, columns=subject_columns)
+df = pd.concat([df, subject_df], axis=1)
+
+# Rekebisha kazi ya kuangalia usahihi wa mada
 def validate_subjects(input_subjects):
     """Check if all entered subjects are valid."""
     valid_subjects = set(subject_columns)
-    return all(subject in valid_subjects for subject in input_subjects)
+    return all(subject.lower() in valid_subjects for subject in input_subjects)
 
 if submit_button and subjects_input:
-    student_subjects = [subject.strip() for subject in subjects_input.split(",")]
+    # Weka herufi ndogo kwenye maingizo ya mtumiaji
+    student_subjects = [subject.strip().lower() for subject in subjects_input.split(",")]
 
-    # Ensure that at least 2 subjects are entered
+    # Hakikisha angalau mada mbili zimeingizwa
     if len(student_subjects) < 2:
         st.error("Please enter at least 2 subjects.")
     else:
-        # Validate entered subjects
+        # Angalia usahihi wa mada zilizoingizwa
         if not validate_subjects(student_subjects):
             st.error("Some entered subjects are not recognized. Please check your inputs.")
         else:
-            # Prepare input data for prediction
+            # Andaa data ya pembejeo kwa ajili ya utabiri
             input_data = [1 if subject in student_subjects else 0 for subject in subject_columns]
             proba = model.predict_proba([input_data])[0]
             programs_with_proba = sorted(zip(model.classes_, proba), key=lambda x: x[1], reverse=True)
 
             st.write("Top 5 Recommended Programs:")
             for program, probability in programs_with_proba[:5]:
-             st.warning(f"{program}:  [   {probability * 100:.1f}%  ]")
+                st.warning(f"{program}: [{probability * 100:.1f}%]")
