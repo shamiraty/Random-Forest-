@@ -121,7 +121,7 @@ if submit_button and subjects_input:
     # Ensure that all subjects are unique
     student_subjects = list(set(student_subjects))  # Remove duplicates
 
-    # Ensure that the user enters at least 2 subjects
+    # Ensure that the user enters at least 3 subjects
     if len(student_subjects) < 3:
         st.error("Please enter at least 3 subjects, separated by commas")
     else:
