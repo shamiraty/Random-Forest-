@@ -6,8 +6,8 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 # Dataset definition
 data = [
-    {"program": "business administration", "subjects": ["history", "geography", "maths", "civics", "bookkeeping", "commerce", "economics", "management", "leadership"]},
-    {"program": "information technology", "subjects": ["maths", "physics", "biology", "electronics", "geography", "programming", "web development", "networking"]},
+    {"program": "business administration", "subjects": ["history", "geography", "maths", "civics", "bookkeeping", "commerce", "economics", "management", "leadership","kiswahili","english"]},
+    {"program": "information technology", "subjects": ["maths", "physics", "biology", "electronics", "geography", "programming", "web development", "networking","basic mathematics"]},
     {"program": "medicine", "subjects": ["biology", "chemistry", "physics", "maths", "general studies", "anatomy", "physiology", "biostatistics", "pharmacology"]},
     {"program": "engineering", "subjects": ["maths", "physics", "chemistry", "technical drawing", "electronics", "mechanics", "material science", "design"]},
     {"program": "law", "subjects": ["history", "civics", "english literature", "general studies", "geography", "constitutional law", "criminal law", "ethics"]},
@@ -25,14 +25,14 @@ data = [
     {"program": "art in economics and statistics", "subjects": ["economics", "statistics", "mathematics", "civics", "geography"]},
     {"program": "art in environmental economics and policy", "subjects": ["environmental studies", "economics", "policy making", "geography", "civics"]},
     {"program": "arts in economics", "subjects": ["economics", "mathematics", "history", "geography", "philosophy"]},
-    {"program": "arts in economics and sociology", "subjects": ["economics", "sociology", "psychology", "mathematics", "history"]},
+    {"program": "arts in economics and sociology", "subjects": ["economics", "sociology", "psychology", "mathematics", "history","social study"]},
     {"program": "business administration", "subjects": ["accounting", "marketing", "finance", "human resources", "entrepreneurship"]},
     {"program": "commerce in accounting", "subjects": ["accounting", "auditing", "taxation", "corporate law", "finance"]},
     {"program": "commerce in entrepreneurship", "subjects": ["entrepreneurship", "marketing", "business strategy", "finance", "accounting"]},
     {"program": "commerce in finance", "subjects": ["finance", "economics", "investments", "banking", "taxation"]},
     {"program": "commerce in human resource management", "subjects": ["human resources", "organizational behavior", "labor laws", "psychology", "communication skills"]},
     {"program": "commerce in international business", "subjects": ["international trade", "global economics", "foreign policy", "marketing", "supply chain"]},
-    {"program": "commerce in marketing", "subjects": ["marketing", "digital marketing", "brand management", "consumer behavior", "sales"]},
+    {"program": "commerce in marketing", "subjects": ["marketing", "digital marketing", "brand management", "consumer behavior", "sales","economics"]},
     {"program": "education in administration and management", "subjects": ["educational management", "leadership", "policy planning", "human resources", "statistics"]},
     {"program": "education in adult education and community", "subjects": ["adult learning", "community development", "policy implementation", "sociology", "psychology"]},
     {"program": "education in arts", "subjects": ["fine arts", "history", "literature", "philosophy", "psychology"]},
@@ -45,7 +45,7 @@ data = [
     {"program": "science in software engineering", "subjects": ["software development", "algorithms", "database systems", "operating systems", "cloud computing"]},
     {"program": "science in telecommunications engineering", "subjects": ["telecommunications", "signal processing", "networking", "electronics", "wireless systems"]},
     {"program": "philosophy in economics", "subjects": ["advanced economics", "economic theory", "research methodology", "quantitative analysis", "policy development"]},
-    {"program": "philosophy in business administration", "subjects": ["business strategy", "leadership", "corporate governance", "financial management", "operations management"]},
+    {"program": "philosophy in business administration", "subjects": ["business strategy", "leadership", "corporate governance", "financial management", "operations management","politics"]},
 ]
 
 
